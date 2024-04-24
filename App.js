@@ -1,25 +1,38 @@
-import { StatusBar } from 'expo-status-bar';
-import { Image, SafeAreaView,TouchableOpacity, TouchableNativeFeedback, Alert, TouchableHighlight, TouchableWithoutFeedback, StyleSheet, Text, View, Button, Platform } from 'react-native';
+import { StatusBar } from "expo-status-bar";
+import { useDimensions, useDeviceOrientation } from "@react-native-community/hooks";
+import {
+  Image,
+  SafeAreaView,
+  TouchableOpacity,
+  TouchableNativeFeedback,
+  Alert,
+  TouchableHighlight,
+  TouchableWithoutFeedback,
+  StyleSheet,
+  Text,
+  View,
+  Button,
+  Platform,
+  Dimensions,
+} from "react-native";
+import WelcomeScreen from "./app/screens/WelcomeScreen";
 
 export default function App() {
-  console.log(require('./assets/icon.png'))
+  const { landscape } = useDeviceOrientation();
+
   return (
-    <SafeAreaView style={[styles.container, containerStyle]}>
-      <Button color="orange" title='Click Me' 
-        onPress={() => Alert.prompt("My title", "my message", text => console.log(text))}
-      />
-    </SafeAreaView>
+    <WelcomeScreen/>
   );
 }
 
-const containerStyle = { backgroundColor: 'green' }
+const containerStyle = { backgroundColor: "green" };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: "#fff",
     // alignItems: 'center',
     // justifyContent: 'center',
-    paddingTop: Platform.OS === 'android' ? StatusBar.curentHeight : 0
+    paddingTop: Platform.OS === "android" ? StatusBar.curentHeight : 0,
   },
 });
